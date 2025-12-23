@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: cards-recipes-backend
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - uploads:/data/uploads
+      - exports:/data/exports
+    networks:
+      - appnet
+
+  web:
+    build:
+      context: ./frontend
+    container_name: cards-recipes-web
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    networks:
+      - appnet
+    depends_on:
+      - api
+
+volumes:
+  uploads:
+  exports:
+
+networks:
+  appnet:
+    driver: bridge
