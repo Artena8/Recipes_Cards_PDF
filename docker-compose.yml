@@ -21,7 +21,7 @@ services:
     networks:
       - appnet
     depends_on:
-      - api
+      - backend
 
 volumes:
   uploads:
