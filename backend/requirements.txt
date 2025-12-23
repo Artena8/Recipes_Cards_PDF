@@ -1,3 +1,8 @@
-pandas
-qrcode[pil]
+fastapi
+uvicorn[standard]
+pydantic
+python-multipart
 reportlab
+qrcode[pil]
+pillow
+pandas
