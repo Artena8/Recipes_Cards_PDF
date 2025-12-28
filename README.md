@@ -1,10 +1,11 @@
-# 🍽️ Recipes Cards PDF Generator V1.1
+# Recipes Cards PDF Generator V1.1
 
 Générateur de **cartes recettes imprimables (PDF)** à partir d’un fichier CSV et d’images associées.  
+La branche main est pour l'executable python et la branche web api est pour la version avec interface web.
 
 ---
 
-## ✨ Fonctionnalités
+## 1. Fonctionnalités
 
 - Lecture d’un CSV structuré
 - Génération automatique des QR codes
@@ -17,8 +18,8 @@ Générateur de **cartes recettes imprimables (PDF)** à partir d’un fichier C
 
 ---
 
-## 🗂️ Structure attendue
-
+## 2. Structure du code
+```
 backend/
 │
 ├── main.py
@@ -34,12 +35,12 @@ backend/
 │   ├── saisons/
 │   └── allergenes/
 └── fonts/
-
+```
 Important : le dossier d’images doit avoir exactement le même nom que le CSV (sans .csv).
 
 ---
 
-## 📄 Format du CSV
+## 3. Format du CSV
 
 Collection,Titre,Temps,URL,Régime,Saison,Allergènes,Image  
 
@@ -57,7 +58,7 @@ Le CSV doit contenir **exactement 8 recettes**.
 
 ---
 
-## 🚀 Exécution du script (local)
+## 4. Exécution du script (local)
 
 0) installer une venv
 
@@ -80,7 +81,7 @@ py .\backend\main.py .\backend\imports\<nom_du_csv>.csv
 
 ---
 
-## 📦 Résultat
+## 5. Résultat
 
 Le PDF généré est disponible dans :
 
@@ -88,7 +89,7 @@ backend/exports/<nom_du_csv>.pdf
 
 ---
 
-## 🛠️ Dépendances principales
+## 6. Dépendances principales
 
 - Python 3.11+
 - reportlab
