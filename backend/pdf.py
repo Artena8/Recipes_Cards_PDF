@@ -88,13 +88,39 @@ def draw_card_recto(pdf: canvas.Canvas, r: dict, x: float, y: float, w: float, h
     
     # image
     img = ImageReader("backend/imports/" + img_path + "/" + r["Image"])
-    
-    pdf.drawImage(
-        img,
-        x, y, w, h,
-        preserveAspectRatio=True,
-        mask='auto'
-    )
+    img_w, img_h = img.getSize()
+
+    # Taille finale carrée (300 px)
+    BOX_PX = 175
+    BOX_PT = BOX_PX * 0.75
+
+    box_x = x + (w - BOX_PT) / 2
+    box_y = y + (h / 2) - (BOX_PT / 2)
+
+    # Ratio image
+    img_ratio = img_w / img_h
+    box_ratio = 1  # carré
+
+    if img_ratio > box_ratio:
+        # image trop large
+        draw_h = BOX_PT
+        draw_w = BOX_PT * img_ratio
+    else:
+        # image trop haute
+        draw_w = BOX_PT
+        draw_h = BOX_PT / img_ratio
+
+    draw_x = box_x - (draw_w - BOX_PT) / 2
+    draw_y = box_y - (draw_h - BOX_PT) / 2
+
+    pdf.saveState()
+    p = pdf.beginPath()
+    p.rect(box_x, box_y, BOX_PT, BOX_PT)
+    pdf.clipPath(p, stroke=0, fill=0)
+
+    pdf.drawImage(img, draw_x, draw_y, draw_w, draw_h, mask="auto")
+
+    pdf.restoreState()
 
     # pastille temps
     pdf.setFillColor(main_color)
