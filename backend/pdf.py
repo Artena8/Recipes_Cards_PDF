@@ -87,7 +87,7 @@ def draw_card_recto(pdf: canvas.Canvas, r: dict, x: float, y: float, w: float, h
     )
     
     # image
-    img = ImageReader("imports/" + img_path + "/" + r["Image"])
+    img = ImageReader("backend/imports/" + img_path + "/" + r["Image"])
     
     pdf.drawImage(
         img,

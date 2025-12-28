@@ -15,7 +15,7 @@ def run(csv_path: Path):
     qrcodes = generate_qr(recipes)
 
     out_pdf = EXPORTS_DIR / (Path(csv_path).with_suffix(".pdf").name)
-
+    #print(Path(csv_path).stem)
     generate_pdf(recipes, qrcodes, out_pdf,Path(csv_path).stem)
     print(f"PDF généré : {out_pdf}")
 

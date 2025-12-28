@@ -1,9 +1,0 @@
-:80
-
-root * /srv
-file_server
-
-# API proxy
-handle_path /api/* {
-  reverse_proxy api:8000
-}

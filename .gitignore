@@ -1,2 +1,17 @@
-./backend/__pycache__/
-./backend/imports/
+# Python
+*.env
+*.pyc
+
+# Runtime data (do NOT version)
+backend/imports/*
+backend/qrcodes/*
+backend/exports/*
+backend/__pycache__/*
+backend/venv/*
+
+# Keep folders but not files
+!backend/imports/.gitkeep
+!backend/qrcodes/.gitkeep
+!backend/exports/.gitkeep
+!backend/venv/.gitkeep
+!backend/__pycache__/.gitkeep
