@@ -135,8 +135,9 @@ def draw_card_recto(pdf: canvas.Canvas, r: dict, x: float, y: float, w: float, h
 
     # allergènes/tags
     tags = _split_tags(r)
+    print(tags)
     tag_icons = [ALLERGEN_ICON[t] for t in tags if t in ALLERGEN_ICON and Path(ALLERGEN_ICON[t]).exists()]
-
+    print(tag_icons)
     # icônes en bas : saison + 1-2 allergènes
     icon_size = 0.8*cm
     base_y = y + 0.5*cm

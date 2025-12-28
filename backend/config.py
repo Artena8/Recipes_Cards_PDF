@@ -37,12 +37,12 @@ SAISON_ICON = {
 }
 
 ALLERGEN_ICON = {
-    "fromage": "images/allergenes/fromage.png",
-    "porc": "images/allergenes/porc.png",
-    "sans_arachides": "images/allergenes/sans_arachides.png",
-    "sans_gluten": "images/allergenes/sans_gluten.png",
-    "sans_lactose": "images/allergenes/sans_lactose.png",
-    "crustacés": "images/allergenes/crustacés.png",
+    "fromage": "backend/images/allergenes/fromage.png",
+    "porc": "backend/images/allergenes/porc.png",
+    "sans_arachides": "backend/images/allergenes/sans_arachides.png",
+    "sans_gluten": "backend/images/allergenes/sans_gluten.png",
+    "sans_lactose": "backend/images/allergenes/sans_lactose.png",
+    "crustacés": "backend/images/allergenes/crustacés.png",
 }
 
 pdfmetrics.registerFont(
