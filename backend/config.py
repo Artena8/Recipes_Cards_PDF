@@ -6,13 +6,11 @@ from reportlab.pdfbase.ttfonts import TTFont
 BASE_DIR = Path(__file__).resolve().parent
 
 IMPORTS_DIR = BASE_DIR / "imports"
-UPLOADS_DIR = Path("/data/uploads")
-EXPORTS_DIR = Path("/data/exports")
+EXPORTS_DIR = BASE_DIR / "exports"
 QRCODES_DIR = BASE_DIR / "qrcodes"
 IMAGES_DIR = BASE_DIR / "images"
 FONTS_DIR = BASE_DIR / "fonts"
 
-UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
 EXPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
 PAGE_SIZE = landscape(A4)
