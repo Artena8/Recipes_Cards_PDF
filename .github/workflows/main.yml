@@ -35,14 +35,13 @@ jobs:
           script: |
             set -e
 
-            APP_DIR="/***/CardsRecipes"
-            BRANCH="web-api-version"
+            APP_DIR="/root/CardsRecipes"
+            BRANCH="${{ github.ref_name }}"
             REPO="https://github.com/Artena8/Recipes_Cards_PDF.git"
 
             mkdir -p "$APP_DIR"
             cd "$APP_DIR"
 
-            # Si le dossier n'est pas un repo git, on (re)clone proprement
             if [ ! -d ".git" ]; then
               rm -rf ./* ./.??* 2>/dev/null || true
               git clone "$REPO" .
@@ -56,4 +55,3 @@ jobs:
 
             docker compose -f compose.prod.yaml up -d --build --remove-orphans
             docker image prune -f
-
