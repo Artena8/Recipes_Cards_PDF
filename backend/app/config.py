@@ -30,10 +30,10 @@ SAISON_COLORS = {
 }
 
 SAISON_ICON = {
-    "Printemps": IMAGES_DIR / "saisons" / "Printemps.png",
-    "Été": IMAGES_DIR / "saisons" / "Été.png",
-    "Automne": IMAGES_DIR / "saisons" / "Automne.png",
-    "Hiver": IMAGES_DIR / "saisons" / "Hiver.png",
+    "Printemps": IMAGES_DIR / "saisons" / "printemps.png",
+    "Été": IMAGES_DIR / "saisons" / "été.png",
+    "Automne": IMAGES_DIR / "saisons" / "automne.png",
+    "Hiver": IMAGES_DIR / "saisons" / "hiver.png",
 }
 
 ALLERGEN_ICON = {
