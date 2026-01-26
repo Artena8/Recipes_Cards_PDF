@@ -35,15 +35,25 @@ jobs:
           script: |
             set -e
 
-            if [ ! -d "/root/CardsRecipes/.git" ]; then
-              git clone https://github.com/${{ github.repository }}.git /root/CardsRecipes
+            APP_DIR="/***/CardsRecipes"
+            BRANCH="web-api-version"
+            REPO="https://github.com/Artena8/Recipes_Cards_PDF.git"
+
+            mkdir -p "$APP_DIR"
+            cd "$APP_DIR"
+
+            # Si le dossier n'est pas un repo git, on (re)clone proprement
+            if [ ! -d ".git" ]; then
+              rm -rf ./* ./.??* 2>/dev/null || true
+              git clone "$REPO" .
             fi
 
-            cd /root/CardsRecipes
             git fetch --all
-            git reset --hard origin/${{ github.ref_name }}
+            git checkout "$BRANCH"
+            git reset --hard "origin/$BRANCH"
 
             test -f .env || (echo ".env missing" && exit 1)
 
             docker compose -f compose.prod.yaml up -d --build --remove-orphans
             docker image prune -f
+
