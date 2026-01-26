@@ -21,6 +21,8 @@ services:
   web:
     build:
       context: ./frontend
+      args:
+        VITE_API_URL: ${VITE_API_URL}
     container_name: cards-recipes-web
     restart: unless-stopped
     depends_on:
