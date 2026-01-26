@@ -1,8 +1,8 @@
 fastapi
 uvicorn[standard]
-pydantic
 python-multipart
-reportlab
-qrcode[pil]
-pillow
+pydantic
 pandas
+qrcode[pil]
+reportlab
+pillow

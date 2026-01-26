@@ -1,0 +1,49 @@
+name: Deploy Cards Recipes to VPS
+
+on:
+  push:
+    branches: ["web-api-version", "production"]
+  workflow_dispatch:
+
+jobs:
+  upload_env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload .env to VPS
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            mkdir -p /root/CardsRecipes
+            cat <<EOF > /root/CardsRecipes/.env
+            VITE_API_URL=${{ secrets.VITE_API_URL }}
+            EOF
+
+  deploy:
+    needs: upload_env
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via Docker Compose on VPS
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+
+            if [ ! -d "/root/CardsRecipes/.git" ]; then
+              git clone https://github.com/${{ github.repository }}.git /root/CardsRecipes
+            fi
+
+            cd /root/CardsRecipes
+            git fetch --all
+            git reset --hard origin/${{ github.ref_name }}
+
+            test -f .env || (echo ".env missing" && exit 1)
+
+            docker compose -f compose.prod.yaml up -d --build --remove-orphans
+            docker image prune -f

@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: ./backend
+    container_name: cards-recipes-backend-dev
+    restart: unless-stopped
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/app/exports:/app/app/exports
+      - ./backend/app/imports:/app/app/imports
+      - ./backend/app/qrcodes:/app/app/qrcodes
+    command: uvicorn api_main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8001:8000"

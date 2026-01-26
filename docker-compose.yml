@@ -9,24 +9,38 @@ services:
       - uploads:/data/uploads
       - exports:/data/exports
     networks:
+      - web
       - appnet
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.recipe-api.rule=Host(`recipe.api.hellyow.pro`)
+      - traefik.http.routers.recipe-api.entrypoints=websecure
+      - traefik.http.routers.recipe-api.tls.certresolver=le
+      - traefik.http.services.recipe-api.loadbalancer.server.port=8000
 
   web:
     build:
       context: ./frontend
     container_name: cards-recipes-web
     restart: unless-stopped
-    ports:
-      - "8081:80"
-    networks:
-      - appnet
     depends_on:
       - backend
+    networks:
+      - web
+      - appnet
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.recipe-front.rule=Host(`recipe.hellyow.pro`)
+      - traefik.http.routers.recipe-front.entrypoints=websecure
+      - traefik.http.routers.recipe-front.tls.certresolver=le
+      - traefik.http.services.recipe-front.loadbalancer.server.port=80
 
 volumes:
   uploads:
   exports:
 
 networks:
+  web:
+    external: true
   appnet:
     driver: bridge
