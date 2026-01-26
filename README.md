@@ -3,6 +3,11 @@
 Générateur de **cartes recettes imprimables (PDF)** depuis internet avec une API et un site en React. 
 La branche main est pour l'executable python et la branche web api est pour la version avec interface web.
 
+![Made with FastAPI](https://img.shields.io/badge/backend-FastAPI-009688)
+![Made with React](https://img.shields.io/badge/frontend-React-61DAFB)
+![Docker](https://img.shields.io/badge/container-Docker-2496ED)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF)
+
 ---
 
 ## 1. Fonctionnalités
